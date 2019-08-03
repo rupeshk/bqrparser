@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Bharat QR Parser</title>
+        <link rel="stylesheet" href="spectre.min.css" />
+        <script type="text/javascript" src="BQRParser.js"></script>
+        <script type="text/javascript" src="prettyprint.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="columns">
+                <div class="column col-12">
+                    <h2>Bharat QR Parser</h2>
+
+                    <div class="form-group">
+                        <label class="form-label" for="input-example-3">Enter Bharat QR String</label>
+                        <textarea class="form-input" id="input-example-3" placeholder="Textarea" rows="3">000201010212021647250010000000120415526550000000001061661000900000000310823ABCD000123812380151933726350010A0000005240110bivek@npci02031.027720010A0000005240135bivek1234567890123456789012345520130215www.npci.org.in28300010A000000524011270308093964452045411530335654032.05802IN5910Bivek Rath6006MUMBAI610640006762410203***0403***0603***0708000000030804test63047d4f</textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit" onclick="parseBQR();">Submit</button>
+                        <button class="btn btn-link" type="reset" onclick="resetBQR();">Reset</button>
+                    </div>
+                    <div id="data"></div>
+                    <p/>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function parseBQR() {
+                document.getElementById('data').innerHTML = "";
+                var tlv = parseTags(document.getElementById('input-example-3').value.trim());
+                var ppTable = prettyPrint(tlv);
+			    document.getElementById('data').appendChild(ppTable);
+            }
+            function resetBQR() {
+                document.getElementById('input-example-3').value = "";
+                document.getElementById('data').innerHTML = "";
+            }
+            
+        </script>
+    </body>
+</html>
